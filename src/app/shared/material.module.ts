@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { MatRippleModule } from '@angular/material/core';
+
 
 import {
   MatFormFieldModule,
@@ -36,6 +38,7 @@ import {
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
+    MatRippleModule,
     MatCardModule
   ],
   exports: [
@@ -54,6 +57,7 @@ import {
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
+    MatRippleModule,
     MatCardModule
   ]
 })

@@ -1,12 +1,27 @@
 
+mat-card-title {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.mat-card-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
 .button-back-bottom {
     position: fixed;
-   /*add z-index*/
     z-index: 10;
     left: 16px;
     bottom: 16px;
   }
   
-  /* .mat-icon {
-    transform: scale(2);
-} */
+.game_img {
+    display: flex;
+    justify-content: center;
+    flex : 0 1 auto;
+    padding: 70px 40px 40px 40px;
+} 
+
