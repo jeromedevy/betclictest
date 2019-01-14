@@ -5,19 +5,30 @@
     <mat-icon style="transform: scale(2);">android</mat-icon>
   </mat-card-title>
   <mat-card-content>
-    <div matRipple [matRippleUnbounded]="true" [matRippleRadius]="60" [matRippleCentered]="true" class="game_img">
+    <!-- <div matRipple [matRippleUnbounded]="true" [matRippleRadius]="60" [matRippleCentered]="true" class="game_img">
       <a href="#">
         <img mat-card-image src="./assets/img/scissors_64.png">
       </a>
     </div>
     <div matRipple [matRippleUnbounded]="true" [matRippleRadius]="60" [matRippleCentered]="true" class="game_img">
-      <img mat-card-image src="./assets/img/paper_64.png">
+      <img mat-card-image src="./assets/img/paper_64.png"  style="cursor:pointer" (click)="restartNewGame()">
     </div>
     <div matRipple [matRippleUnbounded]="true" [matRippleRadius]="60" [matRippleCentered]="true" class="game_img">
       <img mat-card-image src="./assets/img/rock_64.png">
-    </div>
+    </div> -->
+
+    <div *ngFor="let image of imagesList">
+      <div  matRipple [matRippleUnbounded]="true" [matRippleRadius]="60" [matRippleCentered]="true" class="game_img" *ngIf="image.show">
+        <img mat-card-image src={{image.url}} (click)="selectObject(image.name)" style="cursor:pointer">
+      </div>
+  </div>
   </mat-card-content>
 </mat-card>
+
+<div matRipple [matRippleUnbounded]="true" [matRippleRadius]="60" [matRippleCentered]="true" class="game_img" *ngIf="computerChoice.show">
+  <img mat-card-image src="{{computerChoice.url}}"  style="cursor:pointer">
+</div>
+
 <button mat-fab (click)="restartNewGame()" class="button-back-bottom">
   <mat-icon>arrow_back</mat-icon>
 </button>
