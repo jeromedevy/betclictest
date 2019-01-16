@@ -1,27 +1,42 @@
-
-mat-card-title {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
+.title-row {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  height: 100px;
 }
 
-.mat-card-content {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
+.row-player {
+  flex: 3;
+  background-color: #888;
+}
+
+.row-computer {
+  flex: 1;
+  background-color: greenyellow;
+}
+
+.content-row {
+  display: flex;
+  text-align: center;
+}
+
+.score-row {
+  display: flex;
+  text-align: center;
+}
+
+.tools-player {
+  display: flex;
+}
+
+.game_img {
+  flex: 1;
+  /* padding: 70px 40px 40px 40px; */
 }
 
 .button-back-bottom {
-    position: fixed;
-    z-index: 10;
-    left: 16px;
-    bottom: 16px;
-  }
-  
-.game_img {
-    display: flex;
-    justify-content: center;
-    flex : 0 1 auto;
-    padding: 70px 40px 40px 40px;
-} 
-
+  position: fixed;
+  z-index: 10;
+  left: 16px;
+  bottom: 16px;
+}

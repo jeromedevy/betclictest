@@ -10,10 +10,12 @@ import { PlayerComponent } from './player/player.component';
 import { GameComponent } from './game/game.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { RankingComponent } from './ranking/ranking.component';
 
 const routes: Routes = [
   { path: 'player', component: PlayerComponent },
   { path: 'game', component : GameComponent },
+  { path: 'ranking', component : RankingComponent },
   { path: 'game/:name', component : GameComponent },
   { path: '', redirectTo: 'player', pathMatch: 'full'},
   { path: '**', redirectTo: 'player'}
@@ -24,7 +26,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     PlayerComponent,
-    GameComponent
+    GameComponent,
+    RankingComponent
   ],
   imports: [
     BrowserModule,

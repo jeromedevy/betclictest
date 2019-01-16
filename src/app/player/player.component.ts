@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { GameService } from '../shared/game.service';
+import { Game } from '../shared/game.model';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -8,14 +11,30 @@ import { Router } from '@angular/router';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.css']
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent implements OnInit, OnDestroy {
   name = new FormControl('');
   signUpForm: FormGroup;
+  tCurrentGame: Game;
+  tGameSubscription: Subscription;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private gameService: GameService) { }
 
   ngOnInit() {
     this.initForm();
+ //   this.tCurrentGame = this.gameService.getTCurrentGame();
+
+    this.tGameSubscription = this.gameService.tempCurrentGame.subscribe(
+      (game: any) => {
+        this.tCurrentGame = game;
+      }
+    );
+
+  }
+
+  ngOnDestroy() {
+    this.tGameSubscription.unsubscribe();
   }
 
   initForm() {
@@ -25,7 +44,12 @@ export class PlayerComponent implements OnInit {
   }
 
   onPlay() {
-    this.router.navigate(['game/' + this.signUpForm.get('name').value]);
+//    this.gameService.initGame(this.signUpForm.get('name').value);
+    this.tCurrentGame.playerName = this.signUpForm.get('name').value;
+    this.gameService.updateGame(this.tCurrentGame);
+
+    this.router.navigate(['game']);
+    //    this.router.navigate(['game/' + this.signUpForm.get('name').value]);
   }
 
 }

@@ -1,26 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GameObject } from '../shared/gameObject.model';
 import { timeout } from 'q';
+import { images } from '../shared/gameImages';
+import { GameService } from '../shared/game.service';
+import { Game } from '../shared/game.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
-export class GameComponent implements OnInit {
 
-  player: string;
-  initList =  [{ url: "./assets/img/scissors_64.png", name: "scissors", show: true }, { url: "./assets/img/paper_64.png", name: "paper", show: true }, { url: "./assets/img/rock_64.png", name: "rock", show: true }];
+export class GameComponent implements OnInit, OnDestroy {
+
   imagesList = [];
-  computerChoice: object;
+  computerChoice: GameObject;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  tCurrentGame: Game;
+  tGameSubscription: Subscription;
+
+  constructor(private router: Router, private gameService: GameService) { }
 
   ngOnInit() {
-    this.player = this.route.snapshot.paramMap.get('name');
-    this.imagesList =  [ ...this.initList ].map(item=>({...item}));
-    this.computerChoice = {url: "#", name: "", show: false};
-    console.log("the player : " + this.player);
+    this.initializeGame();
+
+    this.tGameSubscription = this.gameService.tempCurrentGame.subscribe(
+      (game: any) => {
+        this.tCurrentGame = game;
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.tGameSubscription.unsubscribe();
   }
 
   restartNewGame() {
@@ -28,23 +42,54 @@ export class GameComponent implements OnInit {
   }
 
   async selectObject(selectedObject) {
-    this.computerChoice = this.initList[this.randomIntInc(0,2)];
-    console.log("select : " + selectedObject);
+    this.computerChoice = this.runComputerChoice();
+    this.showOnlyPlayerChoice(selectedObject);
+    await this.delay(1500);
+
+    this.computeScore(selectedObject, this.computerChoice.name);
+    this.initializeGame();
+
+    this.tCurrentGame.rank = 12;
+    this.gameService.updateGame(this.tCurrentGame);
+  }
+
+  private showOnlyPlayerChoice(selectedObject: string) {
     this.imagesList.forEach(image => {
       if (image.name != selectedObject) {
         image.show = false;
       }
     });
-    await this.delay(1500)
-    this.ngOnInit();
+  }
 
+  private initializeGame() {
+    this.imagesList = [...images].map(item => ({ ...item }));
+    this.computerChoice = { url: "#", name: "", show: false };
+  }
+
+  private computeScore(selectedObject: string, computerChoice: string) {
+    if ((selectedObject == "scissors" && computerChoice == "paper") ||
+      (selectedObject == "paper" && computerChoice == "rock") ||
+      (selectedObject == "rock" && computerChoice == "scissors")) {
+      this.tCurrentGame.playerScore++;
+    }
+
+    if ((computerChoice == "scissors" && selectedObject == "paper") ||
+      (computerChoice == "paper" && selectedObject == "rock") ||
+      (computerChoice == "rock" && selectedObject == "scissors")) {
+      this.tCurrentGame.computerScore++;
+    }
+  }
+
+  private runComputerChoice() {
+    return images[this.randomIntInc(0, 2)];
+  }
+
+  private randomIntInc(low, high) {
+    return Math.floor(Math.random() * (high - low + 1) + low)
   }
 
   private delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  private randomIntInc(low, high) {
-    return Math.floor(Math.random() * (high - low + 1) + low)
-  }
 }

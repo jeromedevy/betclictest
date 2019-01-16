@@ -1,0 +1,11 @@
+<div *ngFor="let player of players">
+  <div>
+    {{player.name}}
+  </div>
+</div>
+
+
+<div>
+  <button mat-menu-item [routerLink]="['/player']">New game !</button>
+  <button mat-menu-item [routerLink]="['/game']">Continue</button>
+</div>

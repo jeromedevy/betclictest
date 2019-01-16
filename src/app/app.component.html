@@ -3,6 +3,33 @@
     <span class="fill-remaining-space"></span>
     <span>Rock - Paper - Scissors</span>
     <span class="fill-remaining-space"></span>
+
+
+    <button mat-icon-button [matMenuTriggerFor]="themeMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #themeMenu x-position="before">
+        <button mat-menu-item [routerLink]="['ranking']">Ranking</button>
+        <!-- <button mat-menu-item (click)="onRanking()" style="cursor:pointer">Ranking</button> -->
+    </mat-menu>
+
   </mat-toolbar>
 </div>
 <router-outlet></router-outlet>
+
+
+<!-- <div class="test_parent">
+  <div class="test-fils f1">malago</div>
+  <div class="test-fils f2">pipo</div>
+</div>
+
+<div class="test_parent">
+  <div class="test-fils f3">
+    <div class="sub-parent">
+      <div class="ff1">coussi</div>
+      <div class="ff2">coussa</div>
+    </div>
+  </div>
+  <div class="test-fils f4">pipo</div>
+</div> -->
