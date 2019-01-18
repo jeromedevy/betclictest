@@ -24,9 +24,9 @@ export class GameComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private gameService: GameService) { }
 
   ngOnInit() {
-    this.initializeGame();
+    this.initializeShoot();
 
-    this.tGameSubscription = this.gameService.tempCurrentGame.subscribe(
+    this.tGameSubscription = this.gameService.currentGame.subscribe(
       (game: any) => {
         this.tCurrentGame = game;
       }
@@ -47,10 +47,16 @@ export class GameComponent implements OnInit, OnDestroy {
     await this.delay(1500);
 
     this.computeScore(selectedObject, this.computerChoice.name);
-    this.initializeGame();
+    this.initializeShoot();
 
-    this.tCurrentGame.rank = 12;
+    this.tCurrentGame.rank = this.computeRank();
     this.gameService.updateGame(this.tCurrentGame);
+  }
+
+  private computeRank(): number {
+    let num : number = this.tCurrentGame.playerScore;
+    let denom = this.tCurrentGame.playerScore + this.tCurrentGame.computerScore;
+    return  denom > 0 ? Math.round((num/denom) * 100) : 50;
   }
 
   private showOnlyPlayerChoice(selectedObject: string) {
@@ -61,7 +67,7 @@ export class GameComponent implements OnInit, OnDestroy {
     });
   }
 
-  private initializeGame() {
+  private initializeShoot() {
     this.imagesList = [...images].map(item => ({ ...item }));
     this.computerChoice = { url: "#", name: "", show: false };
   }

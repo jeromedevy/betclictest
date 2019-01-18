@@ -1,0 +1,19 @@
+.ranking-parent {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.list-row {
+  max-width: 400px;
+  flex: 1;
+}
+
+.button-parent {
+  display: flex;
+  text-align: center;
+}
+
+.button-row {
+  flex: 1;
+}

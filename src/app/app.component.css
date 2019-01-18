@@ -1,14 +1,17 @@
+
 .container {
     margin-bottom: 40px;
 }
 
-/* 
+/*
 .test_parent {
     display: flex;
+    justify-content: center;
 }
 
 .test-fils {
     text-align: center;
+    max-width: 300px;
 }
 
 .sub-parent {
@@ -40,4 +43,5 @@
 .ff2 {
     flex:1;
     background-color:orchid;
-} */
+} 
+*/

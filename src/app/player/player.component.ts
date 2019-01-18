@@ -23,14 +23,13 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initForm();
- //   this.tCurrentGame = this.gameService.getTCurrentGame();
 
-    this.tGameSubscription = this.gameService.tempCurrentGame.subscribe(
+    this.gameService.initGame();
+    this.tGameSubscription = this.gameService.currentGame.subscribe(
       (game: any) => {
         this.tCurrentGame = game;
       }
     );
-
   }
 
   ngOnDestroy() {
@@ -44,12 +43,9 @@ export class PlayerComponent implements OnInit, OnDestroy {
   }
 
   onPlay() {
-//    this.gameService.initGame(this.signUpForm.get('name').value);
     this.tCurrentGame.playerName = this.signUpForm.get('name').value;
     this.gameService.updateGame(this.tCurrentGame);
-
     this.router.navigate(['game']);
-    //    this.router.navigate(['game/' + this.signUpForm.get('name').value]);
   }
 
 }

@@ -1,11 +1,23 @@
-<div *ngFor="let player of players">
-  <div>
-    {{player.name}}
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="listPlayers" matSort>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="rate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Score (%)</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.rate}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5,10,25,100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+</div>
+
+<div class="button-parent">
+  <div class="button-row">
+    <button mat-raised-button [routerLink]="['/game']">Continue</button>
   </div>
 </div>
 
-
-<div>
-  <button mat-menu-item [routerLink]="['/player']">New game !</button>
-  <button mat-menu-item [routerLink]="['/game']">Continue</button>
-</div>
+{{players | json}}

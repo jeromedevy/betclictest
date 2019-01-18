@@ -5,6 +5,8 @@ import { MatRippleModule } from '@angular/material/core';
 import {
   MatFormFieldModule,
   MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
   MatListModule,
   MatTooltipModule,
   MatSlideToggleModule,
@@ -25,7 +27,9 @@ import {
   imports: [
     MatFormFieldModule,
     MatTableModule,
+    MatPaginatorModule,
     MatListModule,
+    MatSortModule,
     MatTooltipModule,
     MatSlideToggleModule,
     MatInputModule,
@@ -45,6 +49,8 @@ import {
     MatFormFieldModule,
     MatTableModule,
     MatListModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatTooltipModule,
     MatSlideToggleModule,
     MatInputModule,
