@@ -11,11 +11,11 @@ import { Subscription } from 'rxjs';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.css']
 })
-export class PlayerComponent implements OnInit, OnDestroy {
+
+export class PlayerComponent implements OnInit {
   name = new FormControl('');
   signUpForm: FormGroup;
-  tCurrentGame: Game;
-  tGameSubscription: Subscription;
+  errorMessage: String;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -23,17 +23,6 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initForm();
-
-    this.gameService.initGame();
-    this.tGameSubscription = this.gameService.currentGame.subscribe(
-      (game: any) => {
-        this.tCurrentGame = game;
-      }
-    );
-  }
-
-  ngOnDestroy() {
-    this.tGameSubscription.unsubscribe();
   }
 
   initForm() {
@@ -42,10 +31,16 @@ export class PlayerComponent implements OnInit, OnDestroy {
     });
   }
 
-  onPlay() {
-    this.tCurrentGame.playerName = this.signUpForm.get('name').value;
-    this.gameService.updateGame(this.tCurrentGame);
-    this.router.navigate(['game']);
+  onContinue() {
+    const playerEntered = this.signUpForm.get('name').value;
+    this.gameService.signInUser(playerEntered).then(
+      () => {
+        this.router.navigate(['game']);
+      },
+      (error) => {
+        this.errorMessage = error;
+      }
+    )
   }
 
 }

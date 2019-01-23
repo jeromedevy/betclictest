@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Player } from './player.model';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { Game } from './game.model';
-//import { worldPlayers } from '../shared/worldPlayers';
+import { backOfficeWorldPlayers } from '../shared/worldPlayers';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -13,56 +14,57 @@ import { Game } from './game.model';
 export class GameService {
 
   private currentGameSubject = new BehaviorSubject<any>(new Game("defaultUser", 0, 0, 50));
-  currentGame = this.currentGameSubject.asObservable();
+  private currentGame = this.currentGameSubject.asObservable();
 
 
-  private tWorldPlayers: Player[] = [...worldPlayers].map(item => ({ ...item })); ;
+  private worldPlayers: Player[] = [...backOfficeWorldPlayers].map(item => ({ ...item }));;
   playersSubject = new Subject<any[]>();
 
-  constructor() {}
+  constructor(private router: Router) { }
 
-  // emitAllPlayers() {
-  //   this.playersSubject.next(this.worldPlayers.slice());
-  // }
+
+  signInUser(newPlayerName: string) {
+    return new Promise((resolve, reject) => {
+      if (this.checkPlayerNotAlreadyExists(newPlayerName)) {
+        this.currentGameSubject.next(new Game(newPlayerName, 0, 0, 50));
+        this.worldPlayers.push({ name: newPlayerName, rate: 50 });
+        resolve();
+      } else {
+        reject("Sorry !! This name already exists...");
+      }
+    });
+  }
+
+  checkPlayerNotAlreadyExists(pPlayerName: string): boolean {
+    const arrayOfPlayersHavingThisName = this.worldPlayers.filter(player => player.name === pPlayerName);
+    return arrayOfPlayersHavingThisName.length > 0 ? false : true;
+  }
 
   updateGame(pGame: Game) {
-    this.currentGameSubject.next(pGame);
-
+    return new Promise((resolve, reject) => {
+      this.currentGameSubject.next(pGame);
+      this.updateBackOfficeWorldPlayersList(pGame);
+      resolve();
+    }).catch((error) => {
+      console.log(error);
+      this.router.navigate(['player'])
+    });
   }
 
-  initGame() {
-    this.currentGameSubject.next(new Game("defaultUser", 0, 0, 50));
-    console.log(" avant : " + this.tWorldPlayers.length);
-    //let tplayer = new Player(14, "toto", 59);
-   // let tplayer : Player[] = [new Player(14, "toto", 59)];
-    this.tWorldPlayers.push({ id: 14, name: 'toto', rate: 64});
-    console.log(" après : " + this.tWorldPlayers.length);
+  private updateBackOfficeWorldPlayersList(pGame: Game): void {
+    const indice = this.getCurrentPlayerIndex(pGame.playerName);
+    this.worldPlayers[indice].rate = pGame.rank;
   }
 
-  getTCurrentGame() {
-    return this.currentGame;
+  getCurrentGame() {
+    return this.currentGameSubject.asObservable();
   }
 
   getAllPlayers(): Array<any> {
-    console.log(" aprdès : " + this.tWorldPlayers.length);
-    const tArray = this.tWorldPlayers.filter(tplayer => tplayer.name != "Frigo");
-    return tArray;
+    return this.worldPlayers;
   }
 
+  private getCurrentPlayerIndex(tPlayerName): number {
+    return this.worldPlayers.findIndex(tplayer => tplayer.name === tPlayerName);
+  }
 }
-
-export let worldPlayers : Array<Player> = [
-  { id: 1, name: 'Dark Vador', rate: 52},
-  { id: 2, name: 'Frigo', rate: 56},
-  { id: 3, name: 'jobby33', rate: 31},
-  { id: 4, name: 'MissMapple', rate: 59},
-  { id: 5, name: 'Joe Wilfried Tsonga', rate: 48},
-  { id: 6, name: 'Ali banko', rate: 52},
-  { id: 7, name: 'xlkjfmebg', rate: 60},
-  { id: 8, name: 'sAnta bArbara', rate: 41},
-  { id: 9, name: '-((:-/)', rate: 46},
-  { id: 10, name: 'Albator', rate: 50},
-  { id: 11, name: 'Mayala Beye', rate: 54},
-  { id: 12, name: 'Frigo', rate: 43},
-  { id: 13, name: 'Barbarella', rate: 64}
-];

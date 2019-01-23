@@ -5,9 +5,10 @@
       <mat-form-field>
         <input matInput formControlName="name" placeholder="your name">
       </mat-form-field>
+      <div *ngIf="errorMessage" class="alert-warn">{{errorMessage}}</div>
     </form>
   </mat-card-content>
   <mat-card-actions>
-      <button type="submit" mat-raised-button color="accent" [disabled]="!signUpForm.valid" (click)="onPlay()">PLAY</button>
+      <button type="submit" mat-raised-button color="accent" [disabled]="!signUpForm.valid" (click)="onContinue()">Continue</button>
   </mat-card-actions>
 </mat-card>

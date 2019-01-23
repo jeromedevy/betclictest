@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { GameObject } from '../shared/gameObject.model';
-import { timeout } from 'q';
 import { images } from '../shared/gameImages';
 import { GameService } from '../shared/game.service';
 import { Game } from '../shared/game.model';
@@ -26,7 +25,7 @@ export class GameComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.initializeShoot();
 
-    this.tGameSubscription = this.gameService.currentGame.subscribe(
+    this.tGameSubscription = this.gameService.getCurrentGame().subscribe(
       (game: any) => {
         this.tCurrentGame = game;
       }
