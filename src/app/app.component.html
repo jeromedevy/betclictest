@@ -10,14 +10,20 @@
     </button>
 
     <mat-menu #themeMenu x-position="before">
-        <button mat-menu-item [routerLink]="['ranking']">Ranking</button>
-        <button mat-menu-item [routerLink]="['/player']">New game !</button>
+      <button mat-menu-item [routerLink]="['ranking']">Ranking</button>
+      <button mat-menu-item [routerLink]="['/player']">New game !</button>
     </mat-menu>
 
   </mat-toolbar>
 </div>
-<router-outlet></router-outlet>
-
+<div class="parent-body">
+  <div class="child-body">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<!-- <div class="test_parent">
+  <div class="test-fils one">malago</div>
+</div> -->
 
 <!-- <div class="test_parent">
   <div class="test-fils f1">malago</div>

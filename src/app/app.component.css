@@ -1,18 +1,42 @@
-
 .container {
-    margin-bottom: 40px;
+  margin-bottom: 45px;
 }
 
-/*
+.parent-body {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.child-body {
+  flex: 1;
+  /* background-color: lightgrey; */
+  text-align: center;
+  max-width: 800px;
+}
+
+.mat-toolbar.mat-primary {
+  background: #0225ad;
+  color: white;
+}
+
+/* 
 .test_parent {
     display: flex;
     justify-content: center;
+    height: 100%;
+}
+
+.one {
+    flex:1;
+    background-color: lightgrey;
 }
 
 .test-fils {
     text-align: center;
-    max-width: 300px;
+    max-width: 800px;
 }
+
 
 .sub-parent {
     display: flex;
@@ -43,5 +67,4 @@
 .ff2 {
     flex:1;
     background-color:orchid;
-} 
-*/
+}  */

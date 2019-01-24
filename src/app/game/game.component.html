@@ -1,34 +1,35 @@
-<div class="title-row">
-  <div class="row-player">
+<div class="parent-row">
+  <div class="row-player font-player bg-player">
     {{tCurrentGame.playerName}}
   </div>
-  <div class="row-computer">
-    <mat-icon style="transform: scale(2);">android</mat-icon>
+  <div class="row-computer bg-computer">
+    <div class="computer">
+      <mat-icon style="transform: scale(2);">android</mat-icon>
+    </div>
   </div>
 </div>
 
-<div class="score-row">
-  <div class="row-player">
+<div class="parent-row">
+  <div class="row-player score-font bg-player-score score-player">
     {{tCurrentGame.playerScore}}
   </div>
-  <div class="row-computer">
+  <div class="row-computer score-font">
     {{tCurrentGame.computerScore}}
   </div>
 </div>
 
-<div class="content-row">
-  <div class="row-player">
+<div class="parent-row">
+  <div class="row-player bg-tools">
     <div class="tools-player">
       <div *ngFor="let image of imagesList" class="game_img">
         <div matRipple [matRippleUnbounded]="true" [matRippleRadius]="60" [matRippleCentered]="true" *ngIf="image.show">
-          &nbsp;
           <img src={{image.url}} (click)="selectObject(image.name)" style="cursor:pointer">&nbsp;
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row-computer">
+  <div class="row-computer bg-computer-choice">
     <div matRipple [matRippleUnbounded]="true" [matRippleRadius]="60" [matRippleCentered]="true" class="game_img" *ngIf="computerChoice.show">
       <img src="{{computerChoice.url}}" style="cursor:pointer">
     </div>
@@ -36,7 +37,6 @@
 </div>
 
 
-{{tCurrentGame.playerName}} &nbsp; {{tCurrentGame.rank}} &nbsp; {{tCurrentGame.playerScore}} &nbsp; {{tCurrentGame.computerScore}}
 <button mat-fab (click)="restartNewGame()" class="button-back-bottom">
   <mat-icon>arrow_back</mat-icon>
 </button>
