@@ -50,6 +50,10 @@
   color: white;
 }
 
+.space-top {
+  margin-top: 35px;
+}
+
 .mat-fab.mat-accent {
   background-color: #ff0266;
 }
@@ -75,7 +79,7 @@
 .bg-computer-choice {
   background-color: #ffde03;
 }
-
+/* 
 .bg-lightgrey {
   background-color: lightgrey;
 }
@@ -126,7 +130,7 @@
 
 .bg-y-700 {
   background-color: #FBC02D;
-}
+} */
 
 /* .game-bg {
   width:100px;

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Player } from '../shared/player.model';
 import { BackendService } from '../shared/backend.service';
+import { Game } from '../shared/game.model';
 
 @Component({
   selector: 'app-ranking',
@@ -16,12 +17,21 @@ export class RankingComponent implements OnInit {
   listPlayers: MatTableDataSource<Player>;
   displayedColumns: string[] = ['name', 'rate'];
 
+  tCurrentGame: Game;
+  tGameSubscription: Subscription;
+
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private gameService: GameService, private backendService: BackendService) { }
 
   ngOnInit() {
+    this.tGameSubscription = this.gameService.getCurrentGame().subscribe(
+      (game: any) => {
+        this.tCurrentGame = game;
+      }
+    );
+
     this.listPlayers = new MatTableDataSource(this.backendService.getPlayers());
     this.listPlayers.sort = this.sort;
     this.listPlayers.paginator = this.paginator;

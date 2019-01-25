@@ -8,9 +8,9 @@ export const backOfficeWorldPlayers = [
     { id: 7, name: 'xlkjfmebg', rate: 60},
     { id: 8, name: 'sAnta bArbara', rate: 41},
     { id: 9, name: '-((:-/)', rate: 46},
-    { id: 10, name: 'Albator', rate: 50},
+    { id: 10, name: 'Albatrox', rate: 50},
     { id: 11, name: 'Mayala Beye', rate: 54},
-    { id: 12, name: 'Frigo', rate: 43},
+    { id: 12, name: 'esperanza de la fuentes', rate: 43},
     { id: 13, name: 'Barbarella', rate: 64},
     { id: 13, name: 'fortune carrée', rate: 48}
   ];
