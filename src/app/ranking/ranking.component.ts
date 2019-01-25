@@ -11,7 +11,7 @@ import { Game } from '../shared/game.model';
   templateUrl: './ranking.component.html',
   styleUrls: ['./ranking.component.css']
 })
-export class RankingComponent implements OnInit {
+export class RankingComponent implements OnInit, OnDestroy {
 
   players: Player[];
   listPlayers: MatTableDataSource<Player>;
@@ -37,6 +37,10 @@ export class RankingComponent implements OnInit {
     this.listPlayers.paginator = this.paginator;
 
     this.listPlayers.connect().subscribe(d => this.players = d);
+  }
+
+  ngOnDestroy() {
+    this.tGameSubscription.unsubscribe();
   }
 
 }

@@ -6,11 +6,6 @@
   flex: 3;
   padding: 20px;
   margin: 2px;
-  /* background-color: #888; */
-}
-
-.computer {
-  padding: 10px;
 }
 
 .row-computer {
@@ -32,6 +27,10 @@
 
 .game_img {
   flex: 1;
+}
+
+.computer {
+  padding: 10px;
 }
 
 .font-player {
@@ -79,68 +78,6 @@
 .bg-computer-choice {
   background-color: #ffde03;
 }
-/* 
-.bg-lightgrey {
-  background-color: lightgrey;
-}
-
-.bg-grey {
-  background-color: #9c9b9b;
-}
-
-.bg-purple-100 {
-  background-color: #EA80FC;
-}
-
-.bg-purple-200 {
-  background-color: #E040FB;
-}
-
-.bg-purple-500 {
-  background-color: #9C27B0;
-}
-
-.bg-purple-700 {
-  background-color: #7B1FA2;
-}
-
-.bg-purple-800 {
-  background-color: #6A1B9A;
-}
-
-.bg-lg-500 {
-  background-color: #8BC34A;
-}
-
-.bg-lg-200 {
-  background-color: #B2FF59;
-}
-
-.bg-lg-700 {
-  background-color: #689F38;
-}
-
-.bg-lg-800 {
-  background-color: #558B2F;
-}
-
-.bg-y-500 {
-  background-color: #FFEB3B;
-}
-
-.bg-y-700 {
-  background-color: #FBC02D;
-} */
-
-/* .game-bg {
-  width:100px;
-  height:100px;
-  border-radius:50px;
-  font-size:20px;
-  color:#fff;
-  text-align:center;
-  background:purple
-} */
 
 .button-back-bottom {
   position: fixed;

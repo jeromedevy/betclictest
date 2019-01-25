@@ -10,7 +10,6 @@
 
 .child-body {
   flex: 1;
-  /* background-color: lightgrey; */
   text-align: center;
   max-width: 800px;
 }

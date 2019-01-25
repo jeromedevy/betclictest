@@ -9,7 +9,7 @@ import { backOfficeWorldPlayers } from '../shared/worldPlayers';
 export class BackendService {
   private worldPlayers: Player[];
 
-  constructor() { 
+  constructor() {
     this.worldPlayers = [...backOfficeWorldPlayers].map(item => ({ ...item }));
   }
 
@@ -25,7 +25,11 @@ export class BackendService {
 
   updatePlayers(playerName: string, rank: number): void {
     const indice = this.getCurrentPlayerIndex(playerName);
-    this.worldPlayers[indice].rate = rank;
+    if (indice > 0) {
+      this.worldPlayers[indice].rate = rank;
+    } else {
+      throw new Error('This player is not in the list !');
+    }
   }
 
   private getCurrentPlayerIndex(tPlayerName): number {
