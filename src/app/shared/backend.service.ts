@@ -23,7 +23,7 @@ export class BackendService {
     this.worldPlayers.push({ name: player.name, rate: player.rate });
   }
 
-  updatePlayers(playerName: string, rank: number): void {
+  updatePlayers(playerName: string, rank: number) {
     const indice = this.getCurrentPlayerIndex(playerName);
     if (indice > 0) {
       this.worldPlayers[indice].rate = rank;

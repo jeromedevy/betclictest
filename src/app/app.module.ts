@@ -11,6 +11,8 @@ import { GameComponent } from './game/game.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { RankingComponent } from './ranking/ranking.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const routes: Routes = [
   { path: 'player', component: PlayerComponent },
@@ -36,7 +38,9 @@ const routes: Routes = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    // RouterModule.forRoot(routes, { useHash: true }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

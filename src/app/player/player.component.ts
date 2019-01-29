@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 export class PlayerComponent implements OnInit {
   name = new FormControl('');
   signUpForm: FormGroup;
-  errorMessage: String;
+  errorMessage: string;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,

@@ -17,23 +17,23 @@ export class GameComponent implements OnInit, OnDestroy {
   imagesList = [];
   computerChoice: GameObject;
 
-  tCurrentGame: Game;
-  tGameSubscription: Subscription;
+  currentGame: Game;
+  gameSubscription: Subscription;
 
   constructor(private router: Router, private gameService: GameService) { }
 
   ngOnInit() {
     this.initializeShoot();
 
-    this.tGameSubscription = this.gameService.getCurrentGame().subscribe(
+    this.gameSubscription = this.gameService.getCurrentGame().subscribe(
       (game: any) => {
-        this.tCurrentGame = game;
+        this.currentGame = game;
       }
     );
   }
 
   ngOnDestroy() {
-    this.tGameSubscription.unsubscribe();
+    this.gameSubscription.unsubscribe();
   }
 
   restartNewGame() {
@@ -48,13 +48,13 @@ export class GameComponent implements OnInit, OnDestroy {
     this.computeScore(selectedObject, this.computerChoice.name);
     this.initializeShoot();
 
-    this.tCurrentGame.rank = this.computeRank();
-    this.gameService.updateGame(this.tCurrentGame);
+    this.currentGame.rank = this.computeRank();
+    this.gameService.updateGame(this.currentGame);
   }
 
   private computeRank(): number {
-    let num : number = this.tCurrentGame.playerScore;
-    let denom = this.tCurrentGame.playerScore + this.tCurrentGame.computerScore;
+    let num : number = this.currentGame.playerScore;
+    let denom = this.currentGame.playerScore + this.currentGame.computerScore;
     return  denom > 0 ? Math.round((num/denom) * 100) : 50;
   }
 
@@ -75,13 +75,13 @@ export class GameComponent implements OnInit, OnDestroy {
     if ((selectedObject == "scissors" && computerChoice == "paper") ||
       (selectedObject == "paper" && computerChoice == "rock") ||
       (selectedObject == "rock" && computerChoice == "scissors")) {
-      this.tCurrentGame.playerScore++;
+      this.currentGame.playerScore++;
     }
 
     if ((computerChoice == "scissors" && selectedObject == "paper") ||
       (computerChoice == "paper" && selectedObject == "rock") ||
       (computerChoice == "rock" && selectedObject == "scissors")) {
-      this.tCurrentGame.computerScore++;
+      this.currentGame.computerScore++;
     }
   }
 

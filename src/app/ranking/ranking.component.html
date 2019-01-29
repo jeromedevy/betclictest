@@ -3,11 +3,11 @@
     <mat-table [dataSource]="listPlayers" matSort  matSortActive="rate" matSortDirection="desc">
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-        <mat-cell *matCellDef="let element" [ngClass]="{'style-current-player':  element.name === tCurrentGame.playerName}">{{element.name}}</mat-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="{'style-current-player':  element.name === currentGame.playerName}">{{element.name}}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="rate">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Score (%)</mat-header-cell>
-        <mat-cell *matCellDef="let element" [ngClass]="{'style-current-player':  element.name === tCurrentGame.playerName}">
+        <mat-cell *matCellDef="let element" [ngClass]="{'style-current-player':  element.name === currentGame.playerName}">
           <mat-chip>{{element.rate}}</mat-chip>
         </mat-cell>
       </ng-container>

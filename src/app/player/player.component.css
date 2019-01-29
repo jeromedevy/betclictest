@@ -1,10 +1,10 @@
-mat-card {
+.mat-card {
   padding: 60px 0px;
 }
 
-mat-card-title,
-mat-card-content,
-mat-card-actions {
+.mat-card-title,
+.mat-card-content,
+.mat-card-actions {
   display: flex;
   justify-content: center;
 }

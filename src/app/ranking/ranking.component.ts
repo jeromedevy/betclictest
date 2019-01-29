@@ -17,8 +17,8 @@ export class RankingComponent implements OnInit, OnDestroy {
   listPlayers: MatTableDataSource<Player>;
   displayedColumns: string[] = ['name', 'rate'];
 
-  tCurrentGame: Game;
-  tGameSubscription: Subscription;
+  currentGame: Game;
+  gameSubscription: Subscription;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -26,9 +26,9 @@ export class RankingComponent implements OnInit, OnDestroy {
   constructor(private gameService: GameService, private backendService: BackendService) { }
 
   ngOnInit() {
-    this.tGameSubscription = this.gameService.getCurrentGame().subscribe(
+    this.gameSubscription = this.gameService.getCurrentGame().subscribe(
       (game: any) => {
-        this.tCurrentGame = game;
+        this.currentGame = game;
       }
     );
 
@@ -40,7 +40,7 @@ export class RankingComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.tGameSubscription.unsubscribe();
+    this.gameSubscription.unsubscribe();
   }
 
 }
