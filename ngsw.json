@@ -9,7 +9,7 @@
       "urls": [
         "betclictest/favicon.ico",
         "betclictest/index.html",
-        "betclictest/main.b1f1416ed93b3c127ac2.js",
+        "betclictest/main.8f14666a89db57deddb7.js",
         "betclictest/polyfills.20ab2d163684112c2aba.js",
         "betclictest/runtime.ec2944dd8b20ec099bf3.js",
         "betclictest/styles.32d1deaa35c526388b94.css"
@@ -62,8 +62,8 @@
     "betclictest/assets/img/scissors_128.png": "be396b575c7704245df1d123deede259da18bce9",
     "betclictest/assets/img/scissors_64.png": "56fd424216f3ec7aa4d0ad0c432f4420dd245d5c",
     "betclictest/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "betclictest/index.html": "4b18bdb1aa2bd5bf13a8460ff29c48ef2fbdf528",
-    "betclictest/main.b1f1416ed93b3c127ac2.js": "0a6947260a1f05b4a066db1cb333831adc596a63",
+    "betclictest/index.html": "925a4969cf998d84ba5cc4be60cede8087a38944",
+    "betclictest/main.8f14666a89db57deddb7.js": "11a8413414d06087c86fe43c75bfc5d753d0e489",
     "betclictest/polyfills.20ab2d163684112c2aba.js": "ce68d153e9b9b6d26b625069c0ee99ae09c6f255",
     "betclictest/runtime.ec2944dd8b20ec099bf3.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
     "betclictest/styles.32d1deaa35c526388b94.css": "e9f61b3d13d803abacfacb957f8cce8cdadc1930"
