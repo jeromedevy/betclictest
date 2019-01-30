@@ -38,8 +38,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
-    // RouterModule.forRoot(routes, { useHash: true }),
+    // RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
