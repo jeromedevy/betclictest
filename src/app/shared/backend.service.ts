@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Player } from './player.model';
 import { backOfficeWorldPlayers } from '../shared/worldPlayers';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,12 @@ export class BackendService {
   }
 
 
-  getPlayers(): Player[] {
-    return this.worldPlayers;
+  // getPlayers(): Player[] {
+  //   return this.worldPlayers;
+  // }
+
+  getPlayers(): Observable<Array<Player>> {
+    return of(this.worldPlayers);
   }
 
   addPlayer(player: Player) {

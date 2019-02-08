@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Player } from './player.model';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject, Subscription } from 'rxjs';
 import { Game } from './game.model';
 import { Router } from '@angular/router';
 import { BackendService } from './backend.service';
@@ -11,6 +11,7 @@ import { BackendService } from './backend.service';
 })
 
 export class GameService {
+  playersSubscription: Subscription;
 
   private currentGameSubject = new BehaviorSubject<any>(new Game("defaultUser", 0, 0, 50));
   private currentGame = this.currentGameSubject.asObservable();
@@ -30,7 +31,11 @@ export class GameService {
   }
 
   checkPlayerNotAlreadyExists(pPlayerName: string): boolean {
-    const arrayOfPlayersHavingThisName = this.backendService.getPlayers().filter(player => player.name === pPlayerName);
+    let responsePlayers;
+    this.playersSubscription = this.backendService.getPlayers().subscribe(res => {
+      responsePlayers = res;
+    });
+    const arrayOfPlayersHavingThisName = responsePlayers.filter(player => player.name === pPlayerName);
     return arrayOfPlayersHavingThisName.length > 0 ? false : true;
   }
 
